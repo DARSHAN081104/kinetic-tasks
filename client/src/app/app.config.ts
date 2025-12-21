@@ -1,24 +1,11 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'; // <--- Import this
-import { FormsModule } from '@angular/forms'; // <--- Import this for inputs
-
-import { App } from './app';
-
-@NgModule({
-  declarations: [App],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule
-  ],
-  providers: [],
-  bootstrap: [App]
-})
-
-export class AppModule {}
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http'; // <--- Import this
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideBrowserGlobalErrorListeners()],
+  providers: [
+    provideRouter(routes),
+    provideHttpClient() // <--- Add this line to enable API calls
+  ]
 };

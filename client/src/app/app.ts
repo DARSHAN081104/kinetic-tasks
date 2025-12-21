@@ -1,9 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common'; // <--- Add this
+import { FormsModule } from '@angular/forms';   // <--- Add this
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
