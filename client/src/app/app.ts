@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class App implements OnInit {
   // 1. Connection Variables
-  apiUrl = 'https://kinetic-tasks.onrender.com/api/tasks'; // Make sure this matches your Render URL
+  apiUrl = 'https://kinetic-tasks.onrender.com/api'; // Make sure this matches your Render URL
   // apiUrl = 'http://localhost:5000/api'; // <--- Use this for testing
   // 2. Auth Variables
   isLoggedIn = false;
