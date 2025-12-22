@@ -1,43 +1,59 @@
-<div class="container">
+<div *ngIf="!isLoggedIn" class="login-container">
+  <div class="login-box">
+    <h1>⚡ Kinetic</h1>
+    <p>{{ authMode === 'login' ? 'Welcome Back' : 'Create Account' }}</p>
+
+    <input type="text" placeholder="Username" [(ngModel)]="username">
+    <input type="password" placeholder="Password" [(ngModel)]="password">
+
+    <button (click)="authenticate()">
+      {{ authMode === 'login' ? 'Login' : 'Sign Up' }}
+    </button>
+
+    <p class="switch-mode" (click)="toggleAuthMode()">
+      {{ authMode === 'login' ? 'Need an account? Sign Up' : 'Have an account? Login' }}
+    </p>
+  </div>
+</div>
+
+<div *ngIf="isLoggedIn" class="main-container">
+  
   <header>
     <h1>⚡ Kinetic</h1>
-    <p>Move at your own pace.</p>
+    <button (click)="logout()" class="btn-logout">Logout</button>
   </header>
 
-  <div class="input-card">
-    <input [(ngModel)]="newTask" placeholder="What do you need to do?" />
+  <div class="input-section">
+    <input type="text" placeholder="What needs doing?" [(ngModel)]="newTask">
     <select [(ngModel)]="selectedEnergy">
-      <option value="Low">Low Energy (Quick & Easy)</option>
-      <option value="Medium">Medium Energy (Standard)</option>
-      <option value="High">High Energy (Deep Focus)</option>
+      <option value="Low">Low Energy</option>
+      <option value="Medium">Medium Energy</option>
+      <option value="High">High Energy</option>
     </select>
-    <button class="save-btn" (click)="addTask()">Add to Queue</button>
+    <button (click)="addTask()">Add to Queue</button>
   </div>
-
-  <hr>
 
   <div class="mood-section">
-    <h2>How is your energy right now?</h2>
+    <p>How do you feel right now?</p>
     <div class="mood-buttons">
-      <button (click)="setMood('Tired')" class="btn-low">😴 Low / Tired</button>
-      <button (click)="setMood('Normal')" class="btn-med">😐 Normal / Okay</button>
-      <button (click)="setMood('Energetic')" class="btn-high">⚡ High / Focused</button>
+      <button (click)="setMood('Tired')">😴 Low / Tired</button>
+      <button (click)="setMood('Normal')">😐 Normal</button>
+      <button (click)="setMood('Energetic')">⚡ High / Focused</button>
     </div>
   </div>
 
-  <div *ngIf="currentMood" class="task-list">
-    <h3>Tasks matching your {{ currentMood }} energy:</h3>
-    
+  <div class="task-list">
     <div *ngFor="let task of tasks" class="task-card">
-      <span>{{ task.title }}</span>
+      <span class="task-title">{{ task.title }}</span>
+      
       <div class="action-buttons">
-      <button (click)="markDone(task._id)">Done ✅</button>
-      <button (click)="deleteTask(task._id)">Delete 🗑️</button>
+        <button class="btn-done" (click)="markDone(task._id)">Done ✅</button>
+        <button class="btn-delete" (click)="deleteTask(task._id)">Delete 🗑️</button>
       </div>
     </div>
-
-    <p *ngIf="tasks.length === 0" class="empty-msg">
-      No tasks found for this energy level. Relax!
+    
+    <p *ngIf="tasks.length === 0" style="text-align: center; color: #888; margin-top: 2rem;">
+      No tasks for this energy level. Relax! ☕
     </p>
   </div>
 </div>
