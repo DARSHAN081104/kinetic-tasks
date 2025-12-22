@@ -53,6 +53,14 @@ app.put('/api/tasks/:id', async (req, res) => {
   } catch (err) { res.status(500).json(err); }
 });
 
+// DELETE: Permanently delete a task
+app.delete('/api/tasks/:id', async (req, res) => {
+  try {
+    await Task.findByIdAndDelete(req.params.id);
+    res.json({ message: "Task Deleted" });
+  } catch (err) { res.status(500).json(err); }
+});
+
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Kinetic Server running on port ${PORT}`));

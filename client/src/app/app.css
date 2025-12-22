@@ -176,7 +176,14 @@ hr {
   font-size: 1.05rem;
 }
 
-.task-card button {
+/* Container to keep buttons nicely spaced */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* 1. Done Button Style (Green on Hover) */
+.btn-done {
   background: white;
   border: 1px solid #ddd;
   padding: 0.5rem 1rem;
@@ -184,12 +191,33 @@ hr {
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.2s;
+  color: #555;
 }
 
-.task-card button:hover {
-  background: #4cd137;
+.btn-done:hover {
+  background: #4cd137; /* Green */
   color: white;
   border-color: #4cd137;
+  transform: translateY(-2px);
+}
+
+/* 2. Delete Button Style (Red on Hover) */
+.btn-delete {
+  background: #fff5f5; /* Light Red tint */
+  border: 1px solid #ffcccc;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  color: #e03131;
+}
+
+.btn-delete:hover {
+  background: #ff6b6b; /* Red */
+  color: white;
+  border-color: #ff6b6b;
+  transform: translateY(-2px);
 }
 
 .empty-msg {

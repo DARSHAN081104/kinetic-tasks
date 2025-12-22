@@ -30,7 +30,10 @@
     
     <div *ngFor="let task of tasks" class="task-card">
       <span>{{ task.title }}</span>
+      <div class="action-buttons">
       <button (click)="markDone(task._id)">Done ✅</button>
+      <button (click)="deleteTask(task._id)">Delete 🗑️</button>
+      </div>
     </div>
 
     <p *ngIf="tasks.length === 0" class="empty-msg">

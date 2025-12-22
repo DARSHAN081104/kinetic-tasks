@@ -58,4 +58,14 @@ export class App {
       this.tasks = this.tasks.filter(t => t._id !== id);
     });
   }
+
+  // Permanently remove task
+  deleteTask(id: string) {
+    if(!confirm("Are you sure you want to delete this?")) return;
+    
+    this.http.delete(`${this.apiUrl}/${id}`).subscribe(() => {
+      // Remove from the list visually
+      this.tasks = this.tasks.filter(t => t._id !== id);
+    });
+  }
 }
