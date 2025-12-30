@@ -6,7 +6,8 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User'); // Import the new model
-const SECRET_KEY = "mySuperSecretKey123"; // In production, put this in .env!
+require('dotenv').config();
+const SECRET_KEY=process.env.JWT_SECRET;
 
 const app = express();
 
